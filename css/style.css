@@ -15,6 +15,10 @@ body {
   color: rgb(59, 39, 83);
 }
 
+.time-container {
+  max-width: 1500px;
+}
+
 #time {
   font-size: 8rem;
   font-family: 'Lemonada', cursive, serif;

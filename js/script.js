@@ -7,11 +7,12 @@ const time = document.getElementById('time'),
 
 //show time
 function showTime() {
-  let today = new Date(2020, 10, 20, 0, 30),
+  let today = new Date(),
+    // 2020, 10, 20, 00, 30
     hour = today.getHours(),
     min = today.getMinutes(),
     sec = today.getSeconds();
-    
+
   time.innerHTML = `${hour}<span>:</span>${addZero(min)}<span>:</span>${addZero(sec)}`;
 
   setTimeout(showTime, 1000);
@@ -23,128 +24,129 @@ function addZero(n) {
 
 // Set Background and Greeting
 function setBgGreet() {
-  let today = new Date(2020, 10, 20, 33, 30),
+  let today = new Date(),
     hour = today.getHours();
 
   switch (hour) {
     case 0:
       document.body.style.backgroundImage = "url('../assets/img/night/01.jpg')";
-      greeting.textContent = 'Good Evening, ';
+      greeting.textContent = 'Good Night !, ';
       document.body.style.color = 'white';
       break;
     case 1:
-      document.body.style.backgroundImage = "url('../assets/img/night/01.jpg')";
-      greeting.textContent = 'Good Evening, ';
+      document.body.style.backgroundImage = "url('../assets/img/night/02.jpg')";
+      greeting.textContent = 'Good Night !, ';
       document.body.style.color = 'white';
       break;
     case 2:
-      document.body.style.backgroundImage = "url('../assets/img/night/01.jpg')";
-      greeting.textContent = 'Good Evening, ';
+      document.body.style.backgroundImage = "url('../assets/img/night/03.jpg')";
+      greeting.textContent = 'Good Night !, ';
       document.body.style.color = 'white';
       break;
     case 3:
-      document.body.style.backgroundImage = "url('../assets/img/night/01.jpg')";
-      greeting.textContent = 'Good Evening, ';
+      document.body.style.backgroundImage = "url('../assets/img/night/04.jpg')";
+      greeting.textContent = 'Good Night !, ';
       document.body.style.color = 'white';
       break;
     case 4:
-      document.body.style.backgroundImage = "url('../assets/img/night/01.jpg')";
-      greeting.textContent = 'Good Evening, ';
+      document.body.style.backgroundImage = "url('../assets/img/night/07.jpg')";
+      greeting.textContent = 'Good Night !, ';
       document.body.style.color = 'white';
       break;
     case 5:
-      document.body.style.backgroundImage = "url('../assets/img/night/01.jpg')";
-      greeting.textContent = 'Good Evening, ';
+      document.body.style.backgroundImage = "url('../assets/img/night/06.jpg')";
+      greeting.textContent = 'Good Night !, ';
       document.body.style.color = 'white';
       break;
     case 6:
-      document.body.style.backgroundImage = "url('../assets/img/night/01.jpg')";
-      greeting.textContent = 'Good Evening, ';
-      document.body.style.color = 'white';
+      document.body.style.backgroundImage = "url('../assets/img/morning/01.jpg')";
+      greeting.textContent = 'Good Morning !, ';
+      document.body.style.color = 'aqua';
       break;
     case 7:
-      document.body.style.backgroundImage = "url('../assets/img/night/01.jpg')";
-      greeting.textContent = 'Good Evening, ';
-      document.body.style.color = 'white';
+      document.body.style.backgroundImage = "url('../assets/img/morning/02.jpg')";
+      greeting.textContent = 'Good Morning !, ';
+      document.body.style.color = 'aqua';
       break;
     case 8:
-      document.body.style.backgroundImage = "url('../assets/img/night/01.jpg')";
-      greeting.textContent = 'Good Evening, ';
-      document.body.style.color = 'white';
+      document.body.style.backgroundImage = "url('../assets/img/morning/03.jpg')";
+      greeting.textContent = 'Good Morning !, ';
+      document.body.style.color = 'aqua';
       break;
     case 9:
-      document.body.style.backgroundImage = "url('../assets/img/night/01.jpg')";
-      greeting.textContent = 'Good Evening, ';
-      document.body.style.color = 'white';
+      document.body.style.backgroundImage = "url('../assets/img/morning/04.jpg')";
+      greeting.textContent = 'Good Morning !, ';
+      document.body.style.color = 'aqua';
       break;
     case 10:
-      document.body.style.backgroundImage = "url('../assets/img/night/01.jpg')";
-      greeting.textContent = 'Good Evening, ';
-      document.body.style.color = 'white';
+      document.body.style.backgroundImage = "url('../assets/img/morning/05.jpg')";
+      greeting.textContent = 'Good Morning !, ';
+      document.body.style.color = 'aqua';
       break;
     case 11:
-      document.body.style.backgroundImage = "url('../assets/img/night/01.jpg')";
-      greeting.textContent = 'Good Evening, ';
-      document.body.style.color = 'white';
+      document.body.style.backgroundImage = "url('../assets/img/morning/06.jpg')";
+      greeting.textContent = 'Good Morning !, ';
+      document.body.style.color = 'aqua';
       break;
     case 12:
-      document.body.style.backgroundImage = "url('../assets/img/night/01.jpg')";
-      greeting.textContent = 'Good Evening, ';
-      document.body.style.color = 'white';
+      document.body.style.backgroundImage = "url('../assets/img/day/01.jpg')";
+      greeting.textContent = 'Good Afternoon !, ';
+      document.body.style.color = 'aqua';
       break;
     case 13:
-      document.body.style.backgroundImage = "url('../assets/img/night/01.jpg')";
-      greeting.textContent = 'Good Evening, ';
+      document.body.style.backgroundImage = "url('../assets/img/day/02.jpg')";
+      greeting.textContent = 'Good Afternoon !, ';
       document.body.style.color = 'white';
       break;
     case 14:
-      document.body.style.backgroundImage = "url('../assets/img/night/01.jpg')";
-      greeting.textContent = 'Good Evening, ';
+      document.body.style.backgroundImage = "url('../assets/img/day/03.jpg')";
+      greeting.textContent = 'Good Afternoon !, ';
       document.body.style.color = 'white';
       break;
     case 15:
-      document.body.style.backgroundImage = "url('../assets/img/night/01.jpg')";
-      greeting.textContent = 'Good Evening, ';
+      document.body.style.backgroundImage = "url('../assets/img/day/04.jpg')";
+      greeting.textContent = 'Good Afternoon !, ';
       document.body.style.color = 'white';
       break;
     case 16:
-      document.body.style.backgroundImage = "url('../assets/img/night/01.jpg')";
-      greeting.textContent = 'Good Evening, ';
+      document.body.style.backgroundImage = "url('../assets/img/day/05.jpg')";
+      greeting.textContent = 'Good Afternoon !, ';
       document.body.style.color = 'white';
       break;
     case 17:
-      document.body.style.backgroundImage = "url('../assets/img/day/01.jpg')";
-      greeting.textContent = 'Good Evening, ';
+      document.body.style.backgroundImage = "url('../assets/img/day/06.jpg')";
+      greeting.textContent = 'Good Afternoon !, ';
       document.body.style.color = 'white';
       break;
     case 18:
-      document.body.style.backgroundImage = "url('../assets/img/night/01.jpg')";
-      greeting.textContent = 'Good Evening, ';
+      document.body.style.backgroundImage = "url('../assets/img/evening/01.jpg')";
+      greeting.textContent = 'Good Evening !, ';
       document.body.style.color = 'white';
       break;
     case 19:
-      document.body.style.backgroundImage = "url(../assets/img/night/01.jpg')";
-      greeting.textContent = 'Good Evening, ';
+      document.body.style.backgroundImage = "url('../assets/img/evening/02.jpg')";
+      greeting.textContent = 'Good Evening !, ';
       document.body.style.color = 'white';
       break;
+
     case 20:
-      document.body.style.backgroundImage = "url('../assets/img/night/01.jpg')";
-      greeting.textContent = 'Good Evening, ';
+      document.body.style.backgroundImage = "url('../assets/img/evening/03.jpg')";
+      greeting.textContent = 'Good Evening !, ';
       document.body.style.color = 'white';
       break;
     case 21:
-      document.body.style.backgroundImage = "url('../assets/img/night/01.jpg')";
-      greeting.textContent = 'Good Evening, ';
+      document.body.style.backgroundImage = "url('../assets/img/evening/04.jpg')";
+      greeting.textContent = 'Good Evening !, ';
       document.body.style.color = 'white';
       break;
     case 22:
-      document.body.style.backgroundImage = "url('../assets/img/night/01.jpg')";
-      greeting.textContent = 'Good Evening, ';
+      document.body.style.backgroundImage = "url('../assets/img/evening/07.jpg')";
+      greeting.textContent = 'Good Evening !, ';
       document.body.style.color = 'white';
       break;
     case 23:
-      document.body.style.backgroundImage = "url('../assets/img/night/01.jpg')";
-      greeting.textContent = 'Good Evening, ';
+      document.body.style.backgroundImage = "url('../assets/img/evening/06.jpg')";
+      greeting.textContent = 'Good Evening !, ';
       document.body.style.color = 'white';
       break;
   }
