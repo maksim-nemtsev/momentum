@@ -180,7 +180,7 @@ function setFocus(e) {
 
 //Get Name
 function getName() {
-  if (localStorage.getItem('name') === null) {
+  if (localStorage.getItem('name') === null || localStorage.getItem('name') === '') {
     name.textContent = '[Enter Name]';
   } else {
     name.textContent = localStorage.getItem('name');
