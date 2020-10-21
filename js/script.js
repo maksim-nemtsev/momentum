@@ -5,6 +5,21 @@ const time = document.getElementById('time'),
   focus = document.getElementById('focus'),
   showAmPm = true;
 
+// show weather
+async function getWeather() {
+  const url = `http://api.openweathermap.org/data/2.5/forecast?id=524901&APPID=ec24a5c04be8551d1c9f69689b74b55e&units=metric`;
+  const res = await fetch(url);
+  const data = await res.json();
+  const city = data.city.name;
+  const temperature = data.list[0].main.temp;
+  const temperature_feels_like = data.list[0].main.feels_like;
+  const humidity = data.list[0].main.humidity;
+  const wind = data.list[0].wind.speed;
+  console.log(data, city, temperature, temperature_feels_like, wind, humidity);
+  // console.log(data.weather[0].id, data.weather[0].description, data.main.temp);
+}
+getWeather();
+
 //show time
 function showTime() {
   let today = new Date(),
