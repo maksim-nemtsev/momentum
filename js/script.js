@@ -6,19 +6,97 @@ const time = document.getElementById('time'),
   focus = document.getElementById('focus'),
   showAmPm = true;
 
+// refresh button
+const base = '../assets/img/';
+const images = [
+  '01n.jpg',
+  '02n.jpg',
+  '03n.jpg',
+  '04n.jpg',
+  '06n.jpg',
+  '07n.jpg',
+  '01m.jpg',
+  '02m.jpg',
+  '03m.jpg',
+  '04m.jpg',
+  '05m.jpg',
+  '06m.jpg',
+  '01d.jpg',
+  '02d.jpg',
+  '03d.jpg',
+  '04d.jpg',
+  '05d.jpg',
+  '06d.jpg',
+  '01e.jpg',
+  '02e.jpg',
+  '03e.jpg',
+  '04e.jpg',
+  '06e.jpg',
+  '07e.jpg',
+];
+let i = 0;
+
+function viewBgImage(data) {
+  const body = document.querySelector('body');
+  const src = data;
+  const img = document.createElement('img');
+  img.src = src;
+  img.onload = () => {
+    body.style.backgroundImage = `url(${src})`;
+  };
+}
+function getImage() {
+  const index = i % images.length;
+  const imageSrc = base + images[index];
+  viewBgImage(imageSrc);
+  i++;
+  btn.disabled = true;
+  setTimeout(function () {
+    btn.disabled = false;
+  }, 1000);
+}
+const btn = document.querySelector('.btn');
+btn.addEventListener('click', getImage);
+
 // show weather
 async function getWeather() {
-  const url = `http://api.openweathermap.org/data/2.5/forecast?id=524901&APPID=ec24a5c04be8551d1c9f69689b74b55e&units=metric`;
-  const res = await fetch(url);
-  const data = await res.json();
-  const city = data.city.name;
-  const temperature = data.list[0].main.temp;
-  const temperature_feels_like = data.list[0].main.feels_like;
-  const humidity = data.list[0].main.humidity;
-  const wind = data.list[0].wind.speed;
-  console.log(data, city, temperature, temperature_feels_like, wind, humidity);
+  let promise = fetch(
+    `https://api.openweathermap.org/data/2.5/weather?q=${city}&lang=ru&appid=0e4043b05d572b6ae940f8ae8e46eac8&units=metric`,
+  );
+  promise
+    .then((response) => response.json())
+    .then((weatherData) => {
+      this.configureWeather(weatherData);
+      this.setWeather(weatherData);
+      this.focusHandler();
+    })
+    .catch(() => {
+      let error = document.createElement('span');
+      error.classList.add('error');
+      error.textContent = 'Такого города не существует!';
+      momentumObject.classes.headerWeather.appendChild(error);
+      this.hideError();
+    });
 }
-getWeather();
+
+function configureWeather(weatherData) {
+  console.log(weatherData);
+  weatherIcon.className = 'weather-icon owf';
+  city.textContent = `${weatherData.name}, ${weatherData.sys.country}`;
+  temp.innerHTML = `${weatherData.main.temp.toFixed(0)}<span>°c</span>`;
+  weatherIcon.classList.add(`owf-${weatherData.weather[0].id}`);
+  weatherDesc.textContent = weatherData.weather[0].description;
+  wind.textContent = weatherData.wind.speed + 'м/c';
+  humidityInfo.textContent = weatherData.main.humidity + '%';
+}
+
+function citySearching() {
+  searchTown.addEventListener('keypress', (e) => {
+    if (e.keyCode == 13) {
+      this.getWeatherData(momentumObject.classes.searchTown.value);
+    }
+  });
+}
 
 //show time
 function showTime() {
@@ -73,123 +151,123 @@ function setBgGreet() {
 
   switch (hour) {
     case 0:
-      document.body.style.backgroundImage = "url('../assets/img/night/01.jpg')";
+      document.body.style.backgroundImage = "url('../assets/img/01n.jpg')";
       greeting.textContent = 'Good Night !, ';
       document.body.style.color = 'white';
       break;
     case 1:
-      document.body.style.backgroundImage = "url('../assets/img/night/02.jpg')";
+      document.body.style.backgroundImage = "url('../assets/img/02n.jpg')";
       greeting.textContent = 'Good Night !, ';
       document.body.style.color = 'white';
       break;
     case 2:
-      document.body.style.backgroundImage = "url('../assets/img/night/03.jpg')";
+      document.body.style.backgroundImage = "url('../assets/img/03n.jpg')";
       greeting.textContent = 'Good Night !, ';
       document.body.style.color = 'white';
       break;
     case 3:
-      document.body.style.backgroundImage = "url('../assets/img/night/04.jpg')";
+      document.body.style.backgroundImage = "url('../assets/img/04n.jpg')";
       greeting.textContent = 'Good Night !, ';
       document.body.style.color = 'white';
       break;
     case 4:
-      document.body.style.backgroundImage = "url('../assets/img/night/07.jpg')";
+      document.body.style.backgroundImage = "url('../assets/img/06n.jpg')";
       greeting.textContent = 'Good Night !, ';
       document.body.style.color = 'white';
       break;
     case 5:
-      document.body.style.backgroundImage = "url('../assets/img/night/06.jpg')";
+      document.body.style.backgroundImage = "url('../assets/img/07n.jpg')";
       greeting.textContent = 'Good Night !, ';
       document.body.style.color = 'white';
       break;
     case 6:
-      document.body.style.backgroundImage = "url('../assets/img/morning/01.jpg')";
+      document.body.style.backgroundImage = "url('../assets/img/01m.jpg')";
       greeting.textContent = 'Good Morning !, ';
       document.body.style.color = 'aqua';
       break;
     case 7:
-      document.body.style.backgroundImage = "url('../assets/img/morning/02.jpg')";
+      document.body.style.backgroundImage = "url('../assets/img/morning/02m.jpg')";
       greeting.textContent = 'Good Morning !, ';
       document.body.style.color = 'aqua';
       break;
     case 8:
-      document.body.style.backgroundImage = "url('../assets/img/morning/03.jpg')";
+      document.body.style.backgroundImage = "url('../assets/img/morning/03m.jpg')";
       greeting.textContent = 'Good Morning !, ';
       document.body.style.color = 'aqua';
       break;
     case 9:
-      document.body.style.backgroundImage = "url('../assets/img/morning/04.jpg')";
+      document.body.style.backgroundImage = "url('../assets/img/morning/04m.jpg')";
       greeting.textContent = 'Good Morning !, ';
       document.body.style.color = 'aqua';
       break;
     case 10:
-      document.body.style.backgroundImage = "url('../assets/img/morning/05.jpg')";
+      document.body.style.backgroundImage = "url('../assets/img/morning/05m.jpg')";
       greeting.textContent = 'Good Morning !, ';
       document.body.style.color = 'aqua';
       break;
     case 11:
-      document.body.style.backgroundImage = "url('../assets/img/morning/06.jpg')";
+      document.body.style.backgroundImage = "url('../assets/img/morning/06m.jpg')";
       greeting.textContent = 'Good Morning !, ';
       document.body.style.color = 'aqua';
       break;
     case 12:
-      document.body.style.backgroundImage = "url('../assets/img/day/01.jpg')";
+      document.body.style.backgroundImage = "url('../assets/img/day/01d.jpg')";
       greeting.textContent = 'Good Afternoon !, ';
       document.body.style.color = 'aqua';
       break;
     case 13:
-      document.body.style.backgroundImage = "url('../assets/img/day/02.jpg')";
+      document.body.style.backgroundImage = "url('../assets/img/day/02d.jpg')";
       greeting.textContent = 'Good Afternoon !, ';
       document.body.style.color = 'white';
       break;
     case 14:
-      document.body.style.backgroundImage = "url('../assets/img/day/03.jpg')";
+      document.body.style.backgroundImage = "url('../assets/img/day/03d.jpg')";
       greeting.textContent = 'Good Afternoon !, ';
       document.body.style.color = 'white';
       break;
     case 15:
-      document.body.style.backgroundImage = "url('../assets/img/day/04.jpg')";
+      document.body.style.backgroundImage = "url('../assets/img/day/04d.jpg')";
       greeting.textContent = 'Good Afternoon !, ';
       document.body.style.color = 'white';
       break;
     case 16:
-      document.body.style.backgroundImage = "url('../assets/img/day/05.jpg')";
+      document.body.style.backgroundImage = "url('../assets/img/day/05d.jpg')";
       greeting.textContent = 'Good Afternoon !, ';
       document.body.style.color = 'white';
       break;
     case 17:
-      document.body.style.backgroundImage = "url('../assets/img/day/06.jpg')";
+      document.body.style.backgroundImage = "url('../assets/img/day/06d.jpg')";
       greeting.textContent = 'Good Afternoon !, ';
       document.body.style.color = 'white';
       break;
     case 18:
-      document.body.style.backgroundImage = "url('../assets/img/evening/01.jpg')";
+      document.body.style.backgroundImage = "url('../assets/img/evening/01e.jpg')";
       greeting.textContent = 'Good Evening !, ';
       document.body.style.color = 'white';
       break;
     case 19:
-      document.body.style.backgroundImage = "url('../assets/img/evening/02.jpg')";
+      document.body.style.backgroundImage = "url('../assets/img/evening/02e.jpg')";
       greeting.textContent = 'Good Evening !, ';
       document.body.style.color = 'white';
       break;
 
     case 20:
-      document.body.style.backgroundImage = "url('../assets/img/evening/03.jpg')";
+      document.body.style.backgroundImage = "url('../assets/img/03e.jpg')";
       greeting.textContent = 'Good Evening !, ';
       document.body.style.color = 'white';
       break;
     case 21:
-      document.body.style.backgroundImage = "url('../assets/img/evening/04.jpg')";
+      document.body.style.backgroundImage = "url('../assets/img/04e.jpg')";
       greeting.textContent = 'Good Evening !, ';
       document.body.style.color = 'white';
       break;
     case 22:
-      document.body.style.backgroundImage = "url('../assets/img/evening/07.jpg')";
+      document.body.style.backgroundImage = "url('../assets/img/06e.jpg')";
       greeting.textContent = 'Good Evening !, ';
       document.body.style.color = 'white';
       break;
     case 23:
-      document.body.style.backgroundImage = "url('../assets/img/evening/06.jpg')";
+      document.body.style.backgroundImage = "url('../assets/img/07e.jpg')";
       greeting.textContent = 'Good Evening !, ';
       document.body.style.color = 'white';
       break;
@@ -261,3 +339,5 @@ getName();
 getFocus();
 handlerFocusContent();
 getQuote();
+getWeather();
+citySearching();
