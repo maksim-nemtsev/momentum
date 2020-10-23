@@ -11,18 +11,48 @@
     <link rel="stylesheet" href="./css/style.css" />
   </head>
   <body>
-    <div class="weather-container">
-      
-    </div>
-    <div class="time-container">
-      <time id="time"></time>
-    </div>
-    <h1>
+    <div class="wrapper">
+      <div class="weather-container">
+        <div class="city-search">
+          <input class="city-input" type="text" autocomplete="off" placeholder="Search a city" />
+        </div>
+        <section class="weather-content">
+          <div class="location">
+            <div class="location__city"></div>
+          </div>
+          <div class="weather">
+            <div class="weather__temperature"></div>
+            <div class="weather__current"></div>
+            <i class="weather__icon"></i>
+            <span class="weather__wind"></span>
+          </div>
+          <div class="humidity">
+            <i class="humidity__icon"></i>
+            <span class="humidity__text"></span>
+          </div>
+        </section>
+      </div>
+      <div class="clock">
+        <div class="time-container">
+          <div id="time"></div>
+          <div id="data"></div>
+        </div>
+      </div>
       <h2 id="greeting"></h2>
-      <span id="name" contenteditable="true" placeholder="Enter Your Name"></span>
-    </h1>
-    <h2>What is Your Focus Today?</h2>
-    <h2 id="focus" contenteditable="true"></h2>
+      <span id="name" contenteditable="true"></span>
+      <h2>What is Your Focus Today?</h2>
+      <h3 id="focus" contenteditable="true"></h3>
+
+      <section class="quote">
+        <div class="quote__inner">
+          <div class="quote__text">
+            <h3 id="day-quote" class="day-quote">Quote of the Day:</h3>
+            <span id="text" class="text"></span>
+            <span id="author" class="author"></span>
+          </div>
+        </div>
+      </section>
+    </div>
     <script src="./js/script.js"></script>
   </body>
 </html>

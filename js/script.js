@@ -1,5 +1,6 @@
 //DOM elements
 const time = document.getElementById('time'),
+  dataInfo = document.getElementById('data'),
   greeting = document.getElementById('greeting'),
   name = document.getElementById('name'),
   focus = document.getElementById('focus'),
@@ -16,21 +17,49 @@ async function getWeather() {
   const humidity = data.list[0].main.humidity;
   const wind = data.list[0].wind.speed;
   console.log(data, city, temperature, temperature_feels_like, wind, humidity);
-  // console.log(data.weather[0].id, data.weather[0].description, data.main.temp);
 }
 getWeather();
 
 //show time
 function showTime() {
-  let today = new Date(),
-    // 2020, 10, 20, 00, 30
+  let days = ['Sunday', 'Monday', 'Tue', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+    months = [
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'January',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December',
+    ],
+    today = new Date(),
+    day = today.getDay(),
+    month = today.getMonth(),
     hour = today.getHours(),
     min = today.getMinutes(),
     sec = today.getSeconds();
 
+  dataInfo.innerHTML = `<span>${days[day]}</span>, <span class='day'>${day}</span> <span class='months'>${months[month]}</span>`;
   time.innerHTML = `${hour}<span>:</span>${addZero(min)}<span>:</span>${addZero(sec)}`;
 
   setTimeout(showTime, 1000);
+}
+
+function getQuote() {
+  let url = 'https://favqs.com/api/qotd',
+    quoteAuthor = document.getElementById('author'),
+    quoteText = document.getElementById('text');
+  fetch(url)
+    .then((response) => response.json())
+    .then((quoteData) => {
+      quoteText.textContent = ` \"${quoteData.quote.body}\"(c)`;
+      quoteAuthor.textContent = quoteData.quote.author;
+    });
 }
 
 function addZero(n) {
@@ -195,7 +224,7 @@ function setFocus(e) {
 
 //Get Name
 function getName() {
-  if (localStorage.getItem('name') === null || localStorage.getItem('name') === '') {
+  if (localStorage.getItem('name') === null || localStorage.getItem('name') == '') {
     name.textContent = '[Enter Name]';
   } else {
     name.textContent = localStorage.getItem('name');
@@ -204,11 +233,20 @@ function getName() {
 
 // Get Focus
 function getFocus() {
-  if (localStorage.getItem('focus') === null) {
+  if (localStorage.getItem('focus') === null || localStorage.getItem('focus') == '') {
     focus.textContent = '[Enter Focus]';
   } else {
     focus.textContent = localStorage.getItem('focus');
   }
+}
+
+function handlerFocusContent() {
+  name.addEventListener('click', () => {
+    name.textContent = '';
+  });
+  focus.addEventListener('click', () => {
+    focus.textContent = '';
+  });
 }
 
 name.addEventListener('keypress', setName);
@@ -221,3 +259,5 @@ showTime();
 setBgGreet();
 getName();
 getFocus();
+handlerFocusContent();
+getQuote();
