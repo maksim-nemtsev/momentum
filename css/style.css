@@ -32,6 +32,13 @@ body {
   justify-content: space-between;
 }
 
+.weather-container {
+  position: absolute;
+  right: 0;
+  background-color: #3a677e;
+  border-radius: 30px;
+}
+
 /* Refresh Button */
 .btn {
   width: 60px;
