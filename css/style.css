@@ -117,11 +117,6 @@ span {
 }
 
 .city {
-  width: 300px;
-  padding: 10px 0;
-  margin: 20px auto;
-  border: 1px solid #ccc;
-  border-radius: 5px;
   color: aquamarine;
 }
 .temperature {
