@@ -4,13 +4,13 @@ const time = document.getElementById('time'),
   greeting = document.getElementById('greeting'),
   name = document.getElementById('name'),
   focus = document.getElementById('focus'),
+  city = document.getElementById('city'),
   showAmPm = true;
 
 // show weather
 const weatherIcon = document.querySelector('.weather-icon');
 const temperature = document.querySelector('.temperature');
 const weatherDescription = document.querySelector('.weather-description');
-const city = document.querySelector('.city');
 
 async function getWeather() {
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${city.textContent}&lang=ru&appid=ec24a5c04be8551d1c9f69689b74b55e&units=metric`;
@@ -112,7 +112,7 @@ function setBgGreet() {
     case 5:
       document.body.style.backgroundImage = "url('../assets/img/07n.jpg')";
       greeting.textContent = 'Good Night ! ';
-      document.body.style.color = 'white';
+      document.body.style.color = 'wh';
       break;
     case 6:
       document.body.style.backgroundImage = "url('../assets/img/01m.jpg')";
@@ -233,6 +233,18 @@ function setFocus(e) {
     localStorage.setItem('focus', e.target.innerText);
   }
 }
+// Set the City
+function setTheCity(e) {
+  if (e.type === 'keypress') {
+    // Make sure enter is pressed
+    if (e.which == 13 || e.keyCode == 13) {
+      localStorage.setItem('city', e.target.innerText);
+      focus.blur();
+    }
+  } else {
+    localStorage.setItem('city', e.target.innerText);
+  }
+}
 
 //Get Name
 function getName() {
@@ -249,6 +261,14 @@ function getFocus() {
     focus.textContent = '[Enter Focus]';
   } else {
     focus.textContent = localStorage.getItem('focus');
+  }
+}
+// Get the City
+function getTheCity() {
+  if (localStorage.getItem('city') === null || localStorage.getItem('city') == '') {
+    city.textContent = '[Enter the City]';
+  } else {
+    city.textContent = localStorage.getItem('city');
   }
 }
 
@@ -316,12 +336,15 @@ name.addEventListener('keypress', setName);
 name.addEventListener('blur', setName);
 focus.addEventListener('keypress', setFocus);
 focus.addEventListener('blur', setFocus);
+city.addEventListener('keypress', setTheCity);
+city.addEventListener('blur', setTheCity);
 
 // Run
 showTime();
 setBgGreet();
 getName();
 getFocus();
+getTheCity();
 handlerFocusContent();
 getQuote();
 getWeather();
