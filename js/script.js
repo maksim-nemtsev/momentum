@@ -239,7 +239,7 @@ function setTheCity(e) {
     // Make sure enter is pressed
     if (e.which == 13 || e.keyCode == 13) {
       localStorage.setItem('city', e.target.innerText);
-      focus.blur();
+      city.blur();
     }
   } else {
     localStorage.setItem('city', e.target.innerText);
