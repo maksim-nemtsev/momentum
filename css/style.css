@@ -62,6 +62,10 @@ body {
   font-family: 'Lemonada', cursive, serif;
 }
 
+.clock {
+  z-index: 2;
+}
+
 #data {
   font-size: 3rem;
   font-family: 'Lemonada', cursive, serif;
