@@ -279,6 +279,9 @@ function handlerFocusContent() {
   focus.addEventListener('click', () => {
     focus.textContent = '';
   });
+    city.addEventListener('click', () => {
+    city.textContent = '';
+  });
 }
 const btn = document.querySelector('.btn');
 btn.addEventListener('click', getImage);
